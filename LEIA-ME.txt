@@ -1,0 +1,30 @@
+ESTUDO DA DEMONOLOGIA — VERSÃO ESTÁTICA (VERCEL)
+
+O que mudou em relação ao pacote anterior:
+O pacote antigo dependia de um backend Python/Flask (app.py) para duas coisas
+opcionais: uma busca "difusa" mais esperta e uma versão levemente diferente
+dos selos SVG. No Vercel (plano gratuito), functions Python costumam falhar
+ou exigir configuração extra — foi isso que estava impedindo o site de
+funcionar. Como o HTML já tinha uma versão em JavaScript equivalente para as
+duas coisas (busca local e geração de selos), removi a dependência do
+backend por completo. Todas as animações (chamas, glow, reveal ao rolar,
+selo de abertura, sanfona dos rituais, modais etc.) são 100% CSS/JavaScript
+no navegador e continuam exatamente iguais — nada disso dependia do Python.
+
+Estrutura deste pacote:
+- index.html      → o site inteiro (HTML + CSS + JS embutidos)
+- assets/         → fontes (woff2) e imagens de referência
+- vercel.json     → configuração mínima (site estático puro)
+- CREDITOS.txt    → créditos das imagens e fontes
+
+COMO PUBLICAR NO VERCEL
+1. Extraia o ZIP.
+2. Crie um repositório no GitHub e envie o CONTEÚDO desta pasta para a raiz
+   dele (index.html, assets/ e vercel.json precisam ficar na raiz).
+3. Em vercel.com/new, importe esse repositório.
+4. Não é preciso Build Command nem Output Directory — o Vercel detecta um
+   site estático automaticamente. Clique em Deploy.
+5. Abra o endereço .vercel.app gerado.
+
+Se preferir, também é possível arrastar a pasta extraída direto para
+vercel.com/new (upload manual), sem usar GitHub.

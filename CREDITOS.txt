@@ -1,0 +1,5 @@
+CRÉDITOS
+
+Os títulos, autorias, datas, contextos de leitura e créditos individuais das ilustrações aparecem no capítulo VII do site. As reproduções históricas foram reunidas de Wikimedia Commons e Metropolitan Museum of Art Open Access conforme as legendas da página. O retrato da Guardiã está incorporado ao index.html.
+
+Licenças dos arquivos de fonte WOFF2 estão em assets/fontes/LICENCA-OFL-*.txt.
