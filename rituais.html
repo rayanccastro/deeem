@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rituais · Estudo da Demonologia</title>
+<meta name="description" content="Arquivo ritualístico do projeto Estudo da Demonologia: O Selo da Caixa Silenciosa e Ritualul celor Trei Porți Închise.">
+<link rel="stylesheet" href="assets/fontes.css">
+<style>
+  :root {
+    --bg:#050303; --bg-raised:#0e0909; --panel:#130d0d; --ink:#e9e2d6;
+    --dim:#a89f92; --faint:#6e6459; --red:#8a0d0d; --red-bright:#c41f1f;
+    --red-glow:#ef3f3f; --line:#34161699;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.035;mix-blend-mode:overlay}
+  a{color:inherit}
+  h1,h2,h3,h4{font-family:'Cinzel',serif;margin:0;color:var(--ink)}
+  .fraktur{font-family:'Metal Mania',cursive;font-weight:400}
+  .shell{width:min(1180px,calc(100% - 40px));margin:0 auto}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(5,3,3,.96);border-bottom:1px solid var(--line)}
+  .topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .brand{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--dim)}
+  .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--line);padding:9px 13px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;color:var(--dim)}
+  .back:hover{border-color:var(--red-bright);color:var(--red-glow)}
+  .hero{padding:92px 0 62px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 50% 20%,rgba(138,13,13,.18),transparent 50%)}
+  .kicker{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--red-glow);text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(2.8rem,7vw,6rem);line-height:.95;max-width:900px}
+  .lede{max-width:790px;color:var(--dim);font-size:1.2rem;margin:24px 0 0}
+  .index{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .index a{text-decoration:none;border:1px solid var(--line);padding:10px 14px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .index a:hover{border-color:var(--red-bright);color:var(--red-glow)}
+  main{padding:56px 0 90px}
+  .ritual{border:1px solid var(--line);background:linear-gradient(180deg,rgba(19,13,13,.94),rgba(8,5,5,.98));margin-bottom:40px;position:relative;overflow:hidden}
+  .ritual::before{content:"";position:absolute;left:0;top:0;width:110px;height:2px;background:var(--red-bright)}
+  .ritual-head{padding:34px 34px 26px;border-bottom:1px solid var(--line)}
+  .code{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;color:var(--red-glow);text-transform:uppercase}
+  .ritual h2{font-size:clamp(1.8rem,4vw,3rem);margin:9px 0 7px}
+  .subtitle{color:var(--dim);margin:0;max-width:76ch}
+  .status{display:inline-block;margin-top:15px;border:1px solid var(--line);padding:5px 9px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .ritual-body{padding:32px 34px 38px}
+  .two-col{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:30px}
+  .panel{border-top:1px solid var(--line);padding-top:18px;margin-top:22px}
+  .panel:first-child{margin-top:0}
+  .panel h3{font-size:1.05rem;letter-spacing:.05em;margin-bottom:10px}
+  .panel p{margin:0;color:var(--dim)}
+  .materials{margin:0;padding-left:1.15em;color:var(--dim)}
+  .materials li+li{margin-top:4px}
+  .steps{counter-reset:ritual-step;margin:0;padding:0;list-style:none}
+  .steps li{position:relative;padding:0 0 24px 48px;color:var(--dim)}
+  .steps li:last-child{padding-bottom:0}
+  .steps li::before{counter-increment:ritual-step;content:counter(ritual-step, upper-roman);position:absolute;left:0;top:1px;font-family:'Cinzel',serif;font-size:.68rem;color:var(--red-glow);letter-spacing:.08em}
+  .steps strong{display:block;font-family:'Cinzel',serif;font-size:.84rem;color:var(--ink);letter-spacing:.04em;margin-bottom:5px}
+  .formula{margin:12px 0 0;padding:15px 17px;border-left:2px solid var(--red);background:rgba(138,13,13,.06);font-style:italic;color:var(--ink)}
+  .translation{display:block;margin-top:7px;color:var(--faint);font-style:normal;font-size:.9rem}
+  .note{margin-top:28px;padding:18px 20px;border:1px solid var(--line);color:var(--dim);background:rgba(255,255,255,.015)}
+  footer{border-top:1px solid var(--line);padding:28px 0 42px;color:var(--faint);font-size:.88rem}
+  @media(max-width:820px){
+    body{font-size:18px}.shell{width:min(100% - 26px,1180px)}.hero{padding:64px 0 44px}.two-col{grid-template-columns:1fr}.topbar-inner{min-height:60px}.brand{font-size:.68rem}.back{font-size:.65rem}.ritual-head,.ritual-body{padding-left:22px;padding-right:22px}.steps li{padding-left:42px}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="index.html">Estudo da Demonologia</a>
+    <a class="back" href="index.html">← Voltar ao estudo</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="shell">
+    <div class="kicker">Arquivo ritualístico</div>
+    <h1>Rituais</h1>
+    <p class="lede">Registro das práticas selecionadas para integrar o Estudo da Demonologia. Esta seção preserva a linguagem ritualística como material simbólico e de estudo, com procedimentos sem chama aberta ou substâncias perigosas.</p>
+    <nav class="index" aria-label="Índice de rituais">
+      <a href="#ritual-a">A · Caixa Silenciosa</a>
+      <a href="#ritual-b">B · Trei Porți Închise</a>
+    </nav>
+  </div>
+</section>
+
+<main>
+  <div class="shell">
+    <article class="ritual" id="ritual-a">
+      <header class="ritual-head">
+        <div class="code">Ritual A · 24/09/2026</div>
+        <h2>O Selo da Caixa Silenciosa</h2>
+        <p class="subtitle">Rito simbólico de banimento e fechamento destinado a encerrar a relação ritual com uma presença representada como contida ou associada a uma caixa.</p>
+        <span class="status">Banimento · Português</span>
+      </header>
+      <div class="ritual-body">
+        <div class="two-col">
+          <div>
+            <section class="panel">
+              <h3>Materiais</h3>
+              <ul class="materials">
+                <li>A caixa, mantida fechada durante todo o rito.</li>
+                <li>Um pano preto grande o bastante para envolvê-la.</li>
+                <li>Uma pequena quantidade de sal.</li>
+                <li>Um recipiente com água.</li>
+                <li>Um pedaço de papel e uma caneta.</li>
+                <li>Um cordão ou fio preto.</li>
+                <li>Uma chave ou pequeno objeto metálico.</li>
+                <li>Uma fonte de luz segura, sem chama aberta.</li>
+                <li>Um sino pequeno, opcional.</li>
+              </ul>
+            </section>
+            <section class="panel">
+              <h3>Preparação</h3>
+              <p>Coloque a caixa sobre o pano preto. Disponha o sal, a água, o papel e o metal ao alcance das mãos. A caixa não é aberta em nenhum momento: o rito trabalha exclusivamente com a ideia de encerramento.</p>
+            </section>
+            <section class="panel">
+              <h3>Selo verbal</h3>
+              <div class="formula">“Non voco. Non aperio. Non permitto. Clausa porta manet.”<span class="translation">Não convoco. Não abro. Não permito. A porta permanece fechada.</span></div>
+            </section>
+          </div>
+          <div>
+            <section class="panel">
+              <h3>Etapas</h3>
+              <ol class="steps">
+                <li><strong>I · Delimitação</strong>Disponha uma linha fina de sal ao redor da caixa, sem tocar nela. Coloque o recipiente com água diante do conjunto e mantenha a fonte de luz atrás de você.</li>
+                <li><strong>II · Nomeação do encerramento</strong>No papel, escreva apenas aquilo que deseja encerrar: um nome, símbolo ou uma frase curta. Dobre o papel para longe de você e diga: <div class="formula">“Aquilo que foi ligado a este lugar termina aqui. Eu não alimento, não chamo e não abro caminho.”</div></li>
+                <li><strong>III · Três recusas</strong>Toque o objeto metálico no chão ou na mesa três vezes. Após cada toque, diga respectivamente: <div class="formula">“Eu recuso a presença.”<br>“Eu recuso a passagem.”<br>“Eu recuso o retorno.”</div></li>
+                <li><strong>IV · Selamento</strong>Envolva a caixa no pano sem abri-la. Passe o cordão ao redor do pano e dê três nós, repetindo o selo verbal em latim a cada nó. Se estiver usando um sino, toque-o uma única vez após o terceiro nó.</li>
+                <li><strong>V · Encerramento</strong>Molhe levemente as pontas dos dedos na água e toque apenas o lado externo do pano. Afaste o papel da caixa e finalize: <div class="formula">“O limite está traçado. O vínculo está encerrado. O que não é meu não permanece comigo. O que está fechado permanece fechado.”</div></li>
+              </ol>
+            </section>
+          </div>
+        </div>
+        <div class="note"><strong>Encerramento físico:</strong> recolha o sal e descarte-o no lixo comum; despeje a água na pia; rasgue o papel e descarte-o. A chave ou objeto metálico pode ser guardado separadamente como marcador simbólico de término. A caixa permanece fechada.</div>
+      </div>
+    </article>
+
+    <article class="ritual" id="ritual-b">
+      <header class="ritual-head">
+        <div class="code">Ritual B · 24/09/2026</div>
+        <h2>Ritualul celor Trei Porți Închise</h2>
+        <p class="subtitle">Ritual simbolic în limba română pentru separarea și alungarea a trei prezențe reprezentate distinct, urmate de închiderea comună a celor trei porți.</p>
+        <span class="status">Banimento · Romeno</span>
+      </header>
+      <div class="ritual-body">
+        <div class="two-col">
+          <div>
+            <section class="panel">
+              <h3>Obiecte</h3>
+              <ul class="materials">
+                <li>Trei bucăți de hârtie și un instrument de scris.</li>
+                <li>Puțină sare.</li>
+                <li>Un vas cu apă.</li>
+                <li>Trei chei sau trei obiecte metalice mici.</li>
+                <li>O bucată de material negru și un fir negru.</li>
+                <li>O sursă de lumină sigură, fără flacără deschisă.</li>
+                <li>O cutie sau un recipient simbolic, opțional.</li>
+              </ul>
+            </section>
+            <section class="panel">
+              <h3>Formula scurtă</h3>
+              <div class="formula">“Trei nume se sting. Trei drumuri se rup. Trei porți se închid. Nu vă chem. Nu vă primesc. Nu vă urmați drumul prin mine. Plecați și rămâneți departe.”</div>
+            </section>
+            <section class="panel">
+              <h3>Ideea ritualului</h3>
+              <p>Fiecare dintre cele trei prezențe primește propriul semn, propria cheie și propria formulă de despărțire. Abia după separarea lor individuală sunt închise împreună cele trei porți simbolice.</p>
+            </section>
+          </div>
+          <div>
+            <section class="panel">
+              <h3>Etapele I–X</h3>
+              <ol class="steps">
+                <li><strong>I · Deschiderea</strong>Așază cele trei hârtii în linie. Pune câte o cheie deasupra fiecăreia și vasul cu apă în fața lor. Spune: <div class="formula">“Deschid numai cuvântul de închidere. Nu chem nimic. Nu ofer nimic. Nu primesc nimic.”</div></li>
+                <li><strong>II · Cele trei nume</strong>Scrie pe fiecare hârtie numele, semnul sau denumirea simbolică a câte unei prezențe. Dacă nu există un nume, folosește: Prima, A Doua, A Treia.</li>
+                <li><strong>III · Prima alungare</strong>Ridică prima cheie și spune: <div class="formula">“Prima prezență: legătura ta cu mine se încheie aici. Drumul tău nu trece prin mine. Pleacă.”</div></li>
+                <li><strong>IV · A doua alungare</strong>Ridică a doua cheie și spune: <div class="formula">“A doua prezență: legătura ta cu mine se încheie aici. Calea ta nu este calea mea. Pleacă.”</div></li>
+                <li><strong>V · A treia alungare</strong>Ridică a treia cheie și spune: <div class="formula">“A treia prezență: legătura ta cu mine se încheie aici. Numele tău nu deschide nicio ușă la mine. Pleacă.”</div></li>
+                <li><strong>VI · Cele trei porți</strong>Trasează trei linii scurte de sare, câte una în fața fiecărei hârtii. Pune cheile dincolo de aceste linii și spune de trei ori: <div class="formula">“Poarta se închide.”</div></li>
+                <li><strong>VII · Marea formulă</strong>Privește cele trei hârtii fără să le atingi și recită formula scurtă completă, lent și o singură dată.</li>
+                <li><strong>VIII · Ruperea legăturii</strong>Îndoaie fiecare hârtie departe de tine, apoi rupe-o o singură dată. Nu amesteca bucățile între ele până la final.</li>
+                <li><strong>IX · Pecetea</strong>Învelește cele trei chei în materialul negru și leagă-l cu firul. Spune: <div class="formula">“Trei semne, trei limite, trei drumuri închise. Ceea ce s-a încheiat nu se redeschide prin voința mea.”</div></li>
+                <li><strong>X · Închiderea</strong>Atinge vasul cu apă și spune: <div class="formula">“Ritul s-a încheiat. Locul este al celor vii, mintea este a mea, iar pragul rămâne închis.”</div></li>
+              </ol>
+            </section>
+          </div>
+        </div>
+        <div class="note"><strong>Încheiere și eliminare:</strong> aruncă apa, strânge sarea și elimină hârtiile rupte. Cele trei chei pot fi păstrate împreună în materialul negru sau separat, ca semne simbolice ale celor trei limite închise.</div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">Estudo da Demonologia · Arquivo ritualístico</div>
+</footer>
+</body>
+</html>
