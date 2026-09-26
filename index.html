@@ -970,6 +970,7 @@
   <small>© 2026 · Estudos de Demonologia · Conduzida por Astrid Castro</small>
 </footer>
 
+<script src="assets/goetia-config.js"></script>
 <script src="assets/goetia-detalhes.js"></script>
 <script>
 // ---------- Portal / capa selada ----------
@@ -1321,8 +1322,12 @@ function daemonFact(label, value) {
   if (!value) return '';
   return `<div class="daemon-fact"><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`;
 }
-function daemonAngelFact(value) {
+function daemonAngelFact(value, demonNumber) {
   if (!value) return '';
+  const visible = (window.GOETIA_ANGEL_VISIBILITY || {})[demonNumber] === true;
+  if (visible) {
+    return `<div class="daemon-fact"><dt>Anjo correspondente</dt><dd>${escapeHTML(value)}</dd></div>`;
+  }
   return `<div class="daemon-fact angel-locked"><dt>Anjo correspondente</dt><dd><button class="angel-lock" type="button" aria-label="Nome do anjo oculto. Clique para ver a mensagem."><span class="angel-lock-value" aria-hidden="true">${escapeHTML(value)}</span></button></dd></div>`;
 }
 
@@ -1337,7 +1342,7 @@ function openDemonModal(i, trigger) {
     ['Hierarquia', s.hierarchy || d.r], ['Legiões', s.legions || String(d.l)], ['Aparência', s.appearance], ['Poderes atribuídos', s.powers],
     ['Isopsefia / numerologia', s.iso], ['Tarot', s.tarot], ['Astrologia', s.astrology], ['Decanato', s.decan], ['Mul.Apin', s.mulapin],
     ['Entidade associada', s.entity], ['Outras associações', s.others]
-  ].map(([k,v]) => daemonFact(k,v)).join('') + daemonAngelFact(s.angel);
+  ].map(([k,v]) => daemonFact(k,v)).join('') + daemonAngelFact(s.angel, d.n);
   const searchableName = s.name || d.nm;
   demonModalBody.innerHTML = `
     <div class="modal-head">

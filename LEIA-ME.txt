@@ -28,3 +28,9 @@ COMO PUBLICAR NO VERCEL
 
 Se preferir, também é possível arrastar a pasta extraída direto para
 vercel.com/new (upload manual), sem usar GitHub.
+
+
+CONTROLE DOS NOMES DOS ANJOS
+-------------------------------
+Abra assets/goetia-config.js. Cada um dos 72 demônios possui um valor booleano individual.
+Use true para exibir o nome do anjo correspondente e false para mantê-lo ofuscado com a mensagem de curiosidade.
