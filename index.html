@@ -1327,8 +1327,7 @@ function openDemonModal(i, trigger) {
     <section class="daemon-section"><h4>Análise e correspondências citadas</h4><p>${escapeHTML(s.analysis || 'Sem síntese adicional cadastrada.')}</p></section>
     <section class="daemon-section"><h4>Oferendas, objetos e correspondências mencionados</h4><p>${escapeHTML(s.offerings || 'A página consultada não foi resumida com uma lista específica de oferendas.')}</p></section>
     ${s.notes ? `<section class="daemon-section"><h4>Observações e divergências</h4><p>${escapeHTML(s.notes)}</p></section>` : ''}
-    <div class="note-box" style="margin:0 0 14px;">A ficha consolida e parafraseia o conteúdo da página indicada do Projeto Daemons. Associações mitológicas, astrológicas, mágicas, médicas ou históricas específicas são apresentadas como interpretações da fonte, não como consenso acadêmico ou fato verificável.</div>
-    <div class="daemon-source-ref"><strong>Fonte consultada:</strong> Projeto Daemons · ${escapeHTML(s.name || d.nm)}<br><span class="source-url">${escapeHTML(s.url || '')}</span><br><span>O símbolo gráfico acima é um motivo visual gerado pelo próprio site e não deve ser confundido com o selo histórico reproduzido na página-fonte.</span></div>
+    <div class="daemon-source-ref"><span>O símbolo gráfico acima é um motivo visual gerado pelo próprio site e não deve ser confundido com o selo histórico reproduzido na página-fonte.</span></div>
   `;
   demonModal.classList.add('open');
   demonModal.setAttribute('aria-hidden', 'false');

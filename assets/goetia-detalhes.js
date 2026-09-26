@@ -18,7 +18,6 @@ window.GOETIA_SOURCE_DETAILS = {
     "others": "Baal Hammon, Baal Berith, Baal Peor, Baal Zaphon, Belzebu, Moloch, Zeus jovem, Poseidon, Hades, Lúcifer, Exu, Lugh, Marduk, Dionísio",
     "analysis": "A fonte aproxima Baal de antigas divindades semíticas do título “senhor” e interpreta gato, sapo e aranha como símbolos de trânsito entre esferas, adaptação e tecelagem do destino. Também o apresenta como figura de comando e condução dentro do imaginário goético, relacionando-o a tradições de Baal Haddad, Hammon e outros cultos antigos.",
     "offerings": "A página cita moedas, chaves, objetos dourados, pirita, teias e vestígios de animais obtidos de modo ético, além de velas escuras, canela, funcho e anis como correspondências ritualísticas.",
-    "notes": "As equivalências entre divindades pertencem à interpretação esotérica do Projeto Daemons e não constituem consenso histórico.",
     "url": "https://daemons.com.br/demonios/baal/"
   },
   "2": {
