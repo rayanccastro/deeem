@@ -301,7 +301,7 @@
   }
   .demon-modal.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .3s ease; }
   .demon-modal-panel {
-    max-width: 620px; width: 100%; max-height: 82vh; overflow-y: auto; position: relative;
+    max-width: 980px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative;
     background: var(--bg-raised); border: 1px solid var(--red); padding: 40px clamp(24px,5vw,44px);
     transform: translateY(16px) scale(0.98); transition: transform .3s ease;
   }
@@ -316,6 +316,19 @@
   .modal-name { font-size: 1.9rem; }
   .modal-rank { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--ink-dim); margin-top: 4px; }
   .modal-full { font-size: 1.06rem; line-height: 1.72; margin: 0 0 20px; }
+  .daemon-source-kicker { font-family:'Cinzel',serif; font-size:.66rem; letter-spacing:.12em; color:var(--red-glow); text-transform:uppercase; margin:26px 0 10px; }
+  .daemon-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); margin:16px 0 24px; }
+  .daemon-fact { padding:12px 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); min-width:0; }
+  .daemon-fact dt { margin:0 0 4px; font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--red-bright); }
+  .daemon-fact dd { margin:0; color:var(--ink-dim); font-size:.95rem; line-height:1.45; overflow-wrap:anywhere; }
+  .daemon-section { margin:0 0 20px; padding:20px 22px; border:1px solid var(--line); background:rgba(196,31,31,.025); }
+  .daemon-section h4 { font-family:'Cinzel',serif; color:var(--ink); font-size:.92rem; margin:0 0 9px; letter-spacing:.04em; }
+  .daemon-section p { margin:0; color:var(--ink-dim); line-height:1.65; }
+  .daemon-section p + p { margin-top:10px; }
+  .daemon-source-ref { font-size:.82rem; color:var(--ink-faint); overflow-wrap:anywhere; }
+  .source-url { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; font-size:.74rem; color:var(--ink-faint); word-break:break-all; }
+  .source-badge { display:inline-block; margin-top:7px; border:1px solid var(--line); padding:4px 8px; font-family:'Cinzel',serif; font-size:.56rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); }
+  @media(max-width:680px){ .daemon-facts{grid-template-columns:1fr}.modal-head{align-items:flex-start}.sigil-modal{width:82px!important;height:82px!important}.demon-modal-panel{padding:34px 18px 28px}.daemon-section{padding:16px} }
 
   /* ============ Cap V — Pentagrama ============ */
   .penta-layout { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
@@ -452,6 +465,7 @@
   <a href="#pentagrama"><span>As cinco pontas</span><span class="roman">V</span></a>
   <a href="#rituais"><span>Sala de rituais</span><span class="roman">VI</span></a>
   <a href="rituais.html"><span>Rituais</span><span class="roman">↗</span></a>
+  <a href="umbra.html"><span>Portal de Umbra</span><span class="roman">↗</span></a>
   <a href="#referencias"><span>Grimórios e pintores</span><span class="roman">VII</span></a>
   <a href="#instrutor"><span>A Guardiã do Estudo</span><span class="roman">VIII</span></a>
 </nav>
@@ -481,6 +495,7 @@
         <a class="btn solid" href="#trilhas">Ver as trilhas</a>
         <a class="btn ghost" href="#rituais">Sala de rituais</a>
         <a class="btn ghost" href="rituais.html">Rituais</a>
+        <a class="btn ghost" href="umbra.html">Portal de Umbra</a>
       </div>
     </div>
     <div class="tp-descend"><svg viewBox="0 0 24 36"><path d="M12 2 v26 M4 20 l8 10 l8 -10" fill="none" stroke="#b21818" stroke-width="1.6"/></svg></div>
@@ -930,6 +945,7 @@
   <small>© 2026 · Estudos de Demonologia · Conduzida por Astrid Castro</small>
 </footer>
 
+<script src="assets/goetia-detalhes.js"></script>
 <script>
 // ---------- Portal / capa selada ----------
 const gate = document.getElementById('gate');
@@ -1255,35 +1271,64 @@ const resultCount = document.getElementById('result-count');
 const noResults = document.getElementById('no-results');
 let activeFilter = 'todos';
 
-grid.innerHTML = demons.map((d, i) => `
-  <div class="ledger-row" data-rank="${d.rf}" data-name="${normalizeText(d.nm)}" data-index="${i}" tabindex="0" role="button" aria-haspopup="dialog">
-    <div class="ledger-sig">${generateSigil(hashStr(d.nm + d.n))}</div>
-    <div class="ledger-name">${d.nm}<span class="rank">${d.r}</span></div>
-    <div class="ledger-meta">Nº ${String(d.n).padStart(2,'0')} · ${d.l} legiões</div>
-  </div>
-`).join('');
+grid.innerHTML = demons.map((d, i) => {
+  const s = (window.GOETIA_SOURCE_DETAILS || {})[d.n] || {};
+  const displayName = s.name || d.nm;
+  const searchText = normalizeText([displayName,d.nm,s.aliases,s.elements,s.entity,s.others].filter(Boolean).join(' '));
+  return `
+  <div class="ledger-row" data-rank="${d.rf}" data-name="${searchText}" data-index="${i}" tabindex="0" role="button" aria-haspopup="dialog">
+    <div class="ledger-sig">${generateSigil(hashStr(displayName + d.n))}</div>
+    <div class="ledger-name">${escapeHTML(displayName)}<span class="rank">${escapeHTML(s.hierarchy || d.r)}</span></div>
+    <div class="ledger-meta">Nº ${String(d.n).padStart(2,'0')} · ${escapeHTML(s.legions || String(d.l))} legiões</div>
+  </div>`;
+}).join('');
 
 const demonModal = document.getElementById('demon-modal');
 const demonModalBody = document.getElementById('demon-modal-body');
 let demonModalTrigger = null;
 let demonPreviousOverflow = '';
 
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+}
+function daemonFact(label, value) {
+  if (!value) return '';
+  return `<div class="daemon-fact"><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`;
+}
+
 function openDemonModal(i, trigger) {
   const d = demons[i];
   if (!d) return;
+  const s = (window.GOETIA_SOURCE_DETAILS || {})[d.n] || {};
   demonModalTrigger = trigger || document.activeElement;
   demonPreviousOverflow = document.body.style.overflow;
+  const facts = [
+    ['Nome na fonte', s.name], ['Outros nomes', s.aliases], ['Elementos / temas', s.elements], ['Significado / etimologia', s.meaning],
+    ['Hierarquia', s.hierarchy || d.r], ['Legiões', s.legions || String(d.l)], ['Aparência', s.appearance], ['Poderes atribuídos', s.powers],
+    ['Isopsefia / numerologia', s.iso], ['Tarot', s.tarot], ['Astrologia', s.astrology], ['Decanato', s.decan], ['Mul.Apin', s.mulapin],
+    ['Anjo correspondente', s.angel], ['Entidade associada', s.entity], ['Outras associações', s.others]
+  ].map(([k,v]) => daemonFact(k,v)).join('');
+  const searchableName = s.name || d.nm;
   demonModalBody.innerHTML = `
     <div class="modal-head">
-      ${generateSigil(hashStr(d.nm + d.n) + 900, 120)}
+      ${generateSigil(hashStr(searchableName + d.n) + 900, 120)}
       <div>
-        <div class="modal-num">Espírito Nº ${String(d.n).padStart(2,'0')} · ${d.l} legiões</div>
-        <h3 class="fraktur modal-name">${d.nm}</h3>
-        <div class="modal-rank">${d.r}</div>
+        <div class="modal-num">Espírito Nº ${String(d.n).padStart(2,'0')} · ficha ampliada</div>
+        <h3 class="fraktur modal-name">${escapeHTML(searchableName)}</h3>
+        <div class="modal-rank">${escapeHTML(s.hierarchy || d.r)}</div>
+        <span class="source-badge">Dados consolidados da URL fornecida</span>
       </div>
     </div>
-    <p class="modal-full">${d.full}</p>
-    <div class="note-box" style="margin:0;">Fonte: catálogo tradicional da Ars Goetia (Lemegeton Clavícula Salomonis). Descrição de estudo histórico-simbólico — não é um convite à prática ritual literal.</div>
+    <div class="daemon-source-kicker">Descrição geral</div>
+    <p class="modal-full">${escapeHTML(d.full)}</p>
+    <div class="daemon-source-kicker">Ficha completa da fonte</div>
+    <dl class="daemon-facts">${facts}</dl>
+    <section class="daemon-section"><h4>Análise e correspondências citadas</h4><p>${escapeHTML(s.analysis || 'Sem síntese adicional cadastrada.')}</p></section>
+    <section class="daemon-section"><h4>Oferendas, objetos e correspondências mencionados</h4><p>${escapeHTML(s.offerings || 'A página consultada não foi resumida com uma lista específica de oferendas.')}</p></section>
+    ${s.notes ? `<section class="daemon-section"><h4>Observações e divergências</h4><p>${escapeHTML(s.notes)}</p></section>` : ''}
+    <div class="note-box" style="margin:0 0 14px;">A ficha consolida e parafraseia o conteúdo da página indicada do Projeto Daemons. Associações mitológicas, astrológicas, mágicas, médicas ou históricas específicas são apresentadas como interpretações da fonte, não como consenso acadêmico ou fato verificável.</div>
+    <div class="daemon-source-ref"><strong>Fonte consultada:</strong> Projeto Daemons · ${escapeHTML(s.name || d.nm)}<br><span class="source-url">${escapeHTML(s.url || '')}</span><br><span>O símbolo gráfico acima é um motivo visual gerado pelo próprio site e não deve ser confundido com o selo histórico reproduzido na página-fonte.</span></div>
   `;
   demonModal.classList.add('open');
   demonModal.setAttribute('aria-hidden', 'false');
