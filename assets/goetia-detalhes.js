@@ -1478,7 +1478,7 @@ window.GOETIA_SOURCE_DETAILS = {
     "elements": "Lábia, convencimento",
     "meaning": "Baal-Yal, “sem valor” ou “sem mestre”",
     "hierarchy": "Rei",
-    "legions": "A página contém divergência interna: 80 legiões no texto introdutório; 50 na tabela “Resumo”",
+    "legions": "50",
     "appearance": "Dois belos anjos sobre carruagem de fogo; a análise também menciona variante de anjo com outra cabeça na barriga.",
     "powers": "Distribuir cargos/poderes e favorecer relações com amigos ou inimigos; conceder familiares; a análise amplia para conselho, independência e desafio à autoridade.",
     "iso": "2+5+20+9+1+20 = 57 = 12 = 3",
@@ -1491,7 +1491,6 @@ window.GOETIA_SOURCE_DETAILS = {
     "others": "Beliar bíblico",
     "analysis": "A página apresenta Belial como figura de independência e rebeldia, relacionando-o a narrativas cabalísticas de um universo anterior e a tradições salomônicas das urnas de Salomão. Discute “belial” como conceito bíblico de vileza/iniquidade e interpreta a forma angelical dupla como dualidade e conselho.",
     "offerings": "Itens de valor pessoal obtidos por esforço, labradorita, lápis-lazúli, lavanda e cedro são citados; o texto introdutório menciona presentes/sacrifícios como parte da tradição.",
-    "notes": "A divergência 80/50 legiões é reproduzida explicitamente em vez de ser normalizada.",
     "url": "https://daemons.com.br/demonios/belial/"
   },
   "69": {
