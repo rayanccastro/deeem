@@ -8,7 +8,7 @@
   Altere APENAS true/false para cada demônio e publique novamente o site.
 */
 window.GOETIA_ANGEL_VISIBILITY = {
-  1: false, // Baal
+  1: true, // Baal
   2: false, // Agares
   3: false, // Vassago
   4: false, // Samigina
