@@ -34,3 +34,8 @@ CONTROLE DOS NOMES DOS ANJOS
 -------------------------------
 Abra assets/goetia-config.js. Cada um dos 72 demônios possui um valor booleano individual.
 Use true para exibir o nome do anjo correspondente e false para mantê-lo ofuscado com a mensagem de curiosidade.
+
+MÚSICA DE FUNDO
+- Arquivo: assets/Expectativa.mp3
+- Inicia após a abertura do grimório e fica em loop.
+- O botão Música pausa e retoma a faixa.

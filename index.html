@@ -1459,83 +1459,13 @@ filterRow.addEventListener('click', e => {
   applyFilters();
 });
 
-// Ambient dark music — generated live, no external audio file
-const audioState = { ctx: null, playing: false, master: null };
+// Música de fundo — arquivo local enviado pelo usuário
+const bgMusic = new Audio('assets/Expectativa.mp3');
+bgMusic.loop = true;
+bgMusic.preload = 'auto';
+bgMusic.volume = 0.42;
 
-function initAudio() {
-  if (audioState.ctx) return;
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    audioState.ctx = ctx;
-
-    const master = ctx.createGain();
-    master.gain.value = 0.0001;
-    master.connect(ctx.destination);
-    audioState.master = master;
-
-    // feedback delay for a sense of space
-    const delay = ctx.createDelay(5.0);
-    delay.delayTime.value = 0.65;
-    const feedback = ctx.createGain();
-    feedback.gain.value = 0.36;
-    const damp = ctx.createBiquadFilter();
-    damp.type = 'lowpass';
-    damp.frequency.value = 1100;
-    delay.connect(damp);
-    damp.connect(feedback);
-    feedback.connect(delay);
-    delay.connect(master);
-
-    // layered detuned drones
-    const freqs = [55, 82.5, 110, 164.81];
-    freqs.forEach((f, i) => {
-      const osc = ctx.createOscillator();
-      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
-      osc.frequency.value = f;
-      const filt = ctx.createBiquadFilter();
-      filt.type = 'lowpass';
-      filt.frequency.value = 420;
-      const g = ctx.createGain();
-      g.gain.value = 0.03;
-      osc.connect(filt);
-      filt.connect(g);
-      g.connect(master);
-      g.connect(delay);
-      osc.start();
-
-      const lfo = ctx.createOscillator();
-      lfo.frequency.value = 0.015 + Math.random() * 0.025;
-      const lfoGain = ctx.createGain();
-      lfoGain.gain.value = 0.02;
-      lfo.connect(lfoGain);
-      lfoGain.connect(g.gain);
-      lfo.start();
-    });
-
-    // occasional distant bell, only while playing
-    function pingBell() {
-      if (audioState.playing && audioState.ctx) {
-        const t = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.value = 200 + Math.random() * 240;
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(0.045, t + 0.08);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + 4.5);
-        osc.connect(g);
-        g.connect(delay);
-        osc.start(t);
-        osc.stop(t + 4.6);
-      }
-      setTimeout(pingBell, 14000 + Math.random() * 18000);
-    }
-    setTimeout(pingBell, 5000);
-  } catch (e) {
-    // Web Audio unavailable; toggle button simply won't do anything
-  }
-}
-
+const audioState = { playing: false };
 const musicBtn = document.getElementById('music-toggle');
 const musicLabel = document.getElementById('music-label');
 
@@ -1545,24 +1475,34 @@ function setMusicUI(on) {
   musicLabel.textContent = on ? 'Música: tocando' : 'Música: em pausa';
 }
 
-function startMusic() {
-  initAudio();
-  if (!audioState.ctx) return;
-  audioState.ctx.resume();
-  audioState.playing = true;
-  audioState.master.gain.cancelScheduledValues(audioState.ctx.currentTime);
-  audioState.master.gain.linearRampToValueAtTime(0.5, audioState.ctx.currentTime + 3);
-  setMusicUI(true);
+async function startMusic() {
+  try {
+    await bgMusic.play();
+    audioState.playing = true;
+    setMusicUI(true);
+  } catch (e) {
+    audioState.playing = false;
+    setMusicUI(false);
+  }
 }
 
 function stopMusic() {
-  if (!audioState.ctx) return;
-  audioState.master.gain.cancelScheduledValues(audioState.ctx.currentTime);
-  audioState.master.gain.linearRampToValueAtTime(0.0001, audioState.ctx.currentTime + 1.2);
+  bgMusic.pause();
   audioState.playing = false;
   setMusicUI(false);
-  setTimeout(() => { if (!audioState.playing && audioState.ctx) audioState.ctx.suspend(); }, 1300);
 }
+
+bgMusic.addEventListener('play', () => {
+  audioState.playing = true;
+  setMusicUI(true);
+});
+
+bgMusic.addEventListener('pause', () => {
+  if (!bgMusic.ended) {
+    audioState.playing = false;
+    setMusicUI(false);
+  }
+});
 
 musicBtn.addEventListener('click', () => {
   if (audioState.playing) stopMusic(); else startMusic();
